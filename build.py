@@ -168,7 +168,7 @@ for language in ('ar','en'):
              for lang,path,title,canonical in page_details)
     +'</urlset>\n')
 (OUT/'sitemap-urls.txt').write_text('\n'.join(pages)+'\n')
-(OUT/'robots.txt').write_text('# Public Sham Aqar Research pages are crawlable.\nUser-agent: *\nAllow: /\n\nSitemap: '+BASE+'/sitemap.xml\nSitemap: '+BASE+'/sitemap-urls.txt\n')
+(OUT/'robots.txt').write_text('User-agent: *\nAllow: /\n\nSitemap: '+BASE+'/sitemap-urls.txt\n')
 shutil.copy2(R/'vercel.json',OUT/'vercel.json')
 (OUT/'404.html').write_text('<!doctype html><html lang="ar" dir="rtl"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><title>الصفحة غير موجودة | شام عقار</title><link rel="stylesheet" href="/assets/style.css"><main class="wrap section"><p class="eyebrow">404 · SHAM AQAR</p><h1>هذه الصفحة غير موجودة</h1><p>قد يكون هذا رابطاً قديماً. استكشف أبحاث شام عقار وأدواتها من الصفحة الرئيسية.</p><a class="btn" href="/">العودة للرئيسية</a></main></html>')
 PUBLIC=R/'public'

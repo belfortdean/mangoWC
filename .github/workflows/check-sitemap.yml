@@ -42,5 +42,9 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          curl --fail --silent --show-error --location --max-time 20 https://mangowc.vercel.app/robots.txt | grep -F 'Sitemap: https://mangowc.vercel.app/sitemap.xml'
-          curl --fail --silent --show-error --location --max-time 20 https://mangowc.vercel.app/sitemap-urls.txt | wc -l
+          robots="$(curl --fail --silent --show-error --location --max-time 20 https://mangowc.vercel.app/robots.txt)"
+          printf '%s\n' "$robots" | grep -Fx 'User-agent: *'
+          printf '%s\n' "$robots" | grep -Fx 'Allow: /'
+          printf '%s\n' "$robots" | grep -Fx 'Sitemap: https://mangowc.vercel.app/sitemap-urls.txt'
+          ! printf '%s\n' "$robots" | grep -Eiq '^[[:space:]]*Disallow:'
+          test "$(curl --fail --silent --show-error --location --max-time 20 https://mangowc.vercel.app/sitemap-urls.txt | wc -l)" -eq 28
