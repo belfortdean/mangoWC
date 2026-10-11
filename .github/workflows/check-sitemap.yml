@@ -17,16 +17,17 @@ jobs:
         run: |
           set -euo pipefail
           url="https://mangowc.vercel.app/sitemap.xml"
-          for attempt in 1 2 3 4; do
+          for attempt in 1 2 3 4 5 6 7 8 9 10; do
             status="$(curl --silent --show-error --location --max-time 20 --user-agent 'Googlebot' --dump-header response-headers.txt --output sitemap-response.xml --write-out '%{http_code}' "$url")"
             echo "Attempt $attempt: HTTP $status"
             sed -n '1,20p' response-headers.txt
-            if [ "$status" = "200" ]; then break; fi
-            head -c 250 sitemap-response.xml || true
-            echo
-            if [ "$attempt" -lt 4 ]; then sleep 10; fi
+            count="$(grep -c '<url>' sitemap-response.xml || true)"
+            echo "Sitemap URLs: $count"
+            if [ "$status" = "200" ] && [ "$count" = "102" ]; then break; fi
+            if [ "$attempt" -lt 10 ]; then sleep 10; fi
           done
           test "$status" = "200"
+          test "$count" = "102"
           python3 - <<'PY'
           import xml.etree.ElementTree as ET
           from pathlib import Path
