@@ -1,0 +1,46 @@
+name: Check public sitemap
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  sitemap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Request production sitemap
+        shell: bash
+        run: |
+          set -euo pipefail
+          url="https://mangowc.vercel.app/sitemap.xml"
+          for attempt in 1 2 3 4; do
+            status="$(curl --silent --show-error --location --max-time 20 --user-agent 'Googlebot' --dump-header response-headers.txt --output sitemap-response.xml --write-out '%{http_code}' "$url")"
+            echo "Attempt $attempt: HTTP $status"
+            sed -n '1,20p' response-headers.txt
+            if [ "$status" = "200" ]; then break; fi
+            head -c 250 sitemap-response.xml || true
+            echo
+            if [ "$attempt" -lt 4 ]; then sleep 10; fi
+          done
+          test "$status" = "200"
+          python3 - <<'PY'
+          import xml.etree.ElementTree as ET
+          from pathlib import Path
+          body=Path('sitemap-response.xml').read_bytes()
+          root=ET.fromstring(body)
+          ns={'s':'http://www.sitemaps.org/schemas/sitemap/0.9'}
+          urls=root.findall('s:url',ns)
+          print('Root:',root.tag,'URLs:',len(urls),'Bytes:',len(body))
+          assert root.tag=='{http://www.sitemaps.org/schemas/sitemap/0.9}urlset'
+          assert len(urls)==28
+          PY
+      - name: Request robots and text sitemap
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --location --max-time 20 https://mangowc.vercel.app/robots.txt | grep -F 'Sitemap: https://mangowc.vercel.app/sitemap.xml'
+          curl --fail --silent --show-error --location --max-time 20 https://mangowc.vercel.app/sitemap-urls.txt | wc -l

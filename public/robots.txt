@@ -3,3 +3,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://mangowc.vercel.app/sitemap.xml
+Sitemap: https://mangowc.vercel.app/sitemap-urls.txt

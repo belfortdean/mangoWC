@@ -28,6 +28,12 @@
       ]
     },
     {
+      "source": "/sitemap-urls.txt",
+      "headers": [
+        {"key": "Content-Type", "value": "text/plain; charset=utf-8"}
+      ]
+    },
+    {
       "source": "/(.*)",
       "headers": [
         {
