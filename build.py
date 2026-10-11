@@ -149,7 +149,11 @@ for lang in ['ar','en']:
         content+=f'<h2>{T("واصل البحث","Continue exploring")}</h2><p>{T("قارن المعلومات الواردة في الإعلان بعقارات فعلية، وتحقق بنفسك من التفاصيل التي تؤثر في قرارك.","Compare listing details with actual properties, and independently check what matters to your decision.")}</p><div class="inline-links"><a class="text-link" href="{url("guides")}">{T("كل الأدلة","All guides")} →</a>'
         for sibling in siblings:content+=f'<a class="text-link" href="{url("guides/"+sibling[0])}">{esc(T(sibling[2],sibling[3]))} →</a>'
         content+=f'</div></article><section class="section">{cta()}</section>'
-        page('guides/'+slug,title,intro_text[:160],content,'guides',{'@type':'Article','headline':title,'datePublished':'2026-10-12','dateModified':'2026-10-12','author':{'@id':'https://shamaqar.net/#organization'},'publisher':{'@id':'https://shamaqar.net/#organization'}})
+        sentences=intro_text.split('. ')
+        description=sentences[0].rstrip('.')+'.'
+        if len(sentences)>1 and len(description)+len(sentences[1])+1<=160:
+            description+=' '+sentences[1].rstrip('.')+'.'
+        page('guides/'+slug,title,description,content,'guides',{'@type':'Article','headline':title,'datePublished':'2026-10-12','dateModified':'2026-10-12','author':{'@id':'https://shamaqar.net/#organization'},'publisher':{'@id':'https://shamaqar.net/#organization'}})
 
     sections=[
       (T('ابدأ من هنا','Start here'),['','about','best-real-estate-platforms-syria']),
