@@ -6,7 +6,7 @@ const fs=require('node:fs');
  const browser=await chromium.launch({headless:true,executablePath:process.env.CHROMIUM_PATH||undefined,args:['--no-sandbox','--disable-dev-shm-usage','--disable-gpu']});
  const page=await browser.newPage({viewport:{width:1440,height:1000}});
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
- const paths=['','reports/','reports/damascus/','reports/rural-damascus/','reports/latakia/','tools/yield/','tools/sqm/','tools/rent-buy/','compare/','methodology/','about/','privacy/'];
+ const paths=['','reports/','reports/damascus/','reports/rural-damascus/','reports/latakia/','tools/yield/','tools/sqm/','tools/rent-buy/','compare/','methodology/','about/','privacy/','best-real-estate-platforms-syria/','sitemap/'];
  for(const lang of ['','en/'])for(const route of paths){
   const res=await page.goto('http://127.0.0.1:8765/'+lang+route,{waitUntil:'domcontentloaded'});
   assert.equal(res.status(),200,lang+route);assert.equal(await page.locator('h1').count(),1);
@@ -26,12 +26,13 @@ const fs=require('node:fs');
  fs.mkdirSync('qa',{recursive:true});
  for(const width of [1440,390]){
   await page.setViewportSize({width,height:900});
-  for(const route of ['','en/','tools/yield/','reports/damascus/','compare/']){
+  for(const route of ['','en/','tools/yield/','reports/damascus/','compare/','best-real-estate-platforms-syria/','en/best-real-estate-platforms-syria/','sitemap/']){
    await page.goto('http://127.0.0.1:8765/'+route,{waitUntil:'networkidle'});
    assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+1),`Overflow: ${width} ${route}`);
   }
   await page.goto('http://127.0.0.1:8765/',{waitUntil:'networkidle'});
   await page.screenshot({path:`qa/home-${width}.png`,fullPage:true});
  }
- await page.goto('http://127.0.0.1:8765/preview.html'); const frame=page.frameLocator('#preview'); await frame.locator('h1').waitFor(); await frame.locator('.hero .actions a').first().click(); await frame.locator('.page-hero h1').waitFor(); await page.goto('http://127.0.0.1:8765/preview.html#/en/tools/yield/'); await frame.locator('#primary').waitFor(); await frame.locator('#primary').filter({hasText:'4.1%'}).waitFor(); assert.equal(await frame.locator('#primary').textContent(),'4.1%'); assert.deepEqual(errors,[]);await browser.close();server.close();console.log('Browser checks passed: 24 routes, links, metadata, structured data, interactive calculators and mobile overflow.');
+ await page.goto('http://127.0.0.1:8765/best-real-estate-platforms-syria/');assert.equal(await page.locator('.platform-item').count(),20);
+ await page.goto('http://127.0.0.1:8765/preview.html'); const frame=page.frameLocator('#preview'); await frame.locator('h1').waitFor(); await frame.locator('.hero .actions a').first().click(); await frame.locator('.page-hero h1').waitFor(); await page.goto('http://127.0.0.1:8765/preview.html#/en/tools/yield/'); await frame.locator('#primary').waitFor(); await frame.locator('#primary').filter({hasText:'4.1%'}).waitFor(); assert.equal(await frame.locator('#primary').textContent(),'4.1%'); assert.deepEqual(errors,[]);await browser.close();server.close();console.log('Browser checks passed: 28 routes, links, metadata, structured data, interactive calculators and mobile overflow.');
 })().catch(e=>{console.error(e);process.exit(1)});
