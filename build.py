@@ -1,7 +1,7 @@
 """Build a crawlable, bilingual static site from a published aggregate snapshot.
 No runtime dependencies. Use --offline for a reproducible build from snapshot.json.
 """
-import json, os, sys, html, urllib.request, urllib.parse, datetime
+import json, os, sys, html, urllib.request, urllib.parse, datetime, shutil
 from pathlib import Path
 R=Path(__file__).parent; OUT=R/'site'; C=json.loads((R/'config.json').read_text()); D=json.loads((R/'snapshot.json').read_text())
 if '--offline' not in sys.argv:
@@ -108,4 +108,7 @@ for c in D['cities']:w.writerow([D['date'],c['en'],c['median'],c['q1'],c['q3'],c
 (OUT/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join('<url><loc>'+esc(p)+'</loc></url>' for p in pages)+'</urlset>')
 (OUT/'vercel.json').write_text(json.dumps({'cleanUrls':True,'trailingSlash':True,'headers':[{'source':'/(.*)','headers':[{'key':'X-Content-Type-Options','value':'nosniff'},{'key':'Referrer-Policy','value':'strict-origin-when-cross-origin'},{'key':'X-Frame-Options','value':'DENY'}]}]},indent=2))
 (OUT/'404.html').write_text('<!doctype html><html lang="ar" dir="rtl"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex"><title>الصفحة غير موجودة | شام عقار</title><link rel="stylesheet" href="/assets/style.css"><main class="wrap section"><p class="eyebrow">404 · SHAM AQAR</p><h1>هذه الصفحة غير موجودة</h1><p>قد يكون هذا رابطاً قديماً. استكشف أبحاث شام عقار وأدواتها من الصفحة الرئيسية.</p><a class="btn" href="/">العودة للرئيسية</a></main></html>')
-print('Built',len(pages),'HTML pages. Snapshot:',D['date'])
+PUBLIC=R/'public'
+if PUBLIC.exists(): shutil.rmtree(PUBLIC)
+shutil.copytree(OUT,PUBLIC)
+print('Built',len(pages),'HTML pages in site/ and public/. Snapshot:',D['date'])

@@ -13,7 +13,7 @@ To serve the actual production files:
 python3 -m http.server 8080 --directory site
 ```
 
-Open `http://localhost:8080`. `site/` is the complete static deployment directory. No Node runtime or database credentials are required to serve it.
+Open `http://localhost:8080`. `site/` is the authoring output and `public/` is the deployment mirror. Both contain the same static pages. No Node runtime or database credentials are required to serve it.
 
 ## Build
 
@@ -41,7 +41,7 @@ The project security advisor also identified an existing `public.rls_auto_enable
 
 ## Deploy on Vercel
 
-This repository is prepared for the connected Vercel project `mangowc` (`prj_88DHNT2KcVLBG1zlkNPUuKeUFQiJ`). Keep the project Root Directory at the repository root. The root `vercel.json` sets framework to Other and deploys the prebuilt `site/` directory without a build step. Vercel's Git integration can deploy a commit to the repository's `main` branch. The deployment URL and domain assignment need verification after the first build; a 404 on a hostname does not establish that it is claimable.
+This repository is prepared for the connected Vercel project `mangowc` (`prj_88DHNT2KcVLBG1zlkNPUuKeUFQiJ`). Keep the project Root Directory at the repository root. The root `vercel.json` sets framework to Other and deploys the prebuilt `public/` directory without a build step. Vercel's Git integration can deploy a commit to the repository's `main` branch. The deployment URL and domain assignment need verification after the first build; a 404 on a hostname does not establish that it is claimable.
 
 Once a production domain is assigned, verify the Arabic and English pages, navigation, JSON/CSV data, canonicals, real 404s and production headers. If the assigned address differs from `mangowc.vercel.app`, rebuild with `SITE_URL` set to the confirmed address, commit the generated pages and submit the corresponding sitemap to Search Console. Do not redirect unrelated historical URLs to property pages.
 
@@ -66,7 +66,8 @@ Tests cover rental yield, vacancy/loss cases, price/m², buying cash outlay, inv
 ## Files
 
 - `build.py`: data fetch and static page generation.
-- `site/`: production output, source styles and browser scripts, images, CSV/JSON data exports.
+- `site/`: generated site and source styles, browser scripts, images, CSV/JSON data exports.
+- `public/`: generated deployment mirror with the same static site.
 - `snapshot.json`: reproducible dated public aggregate snapshot.
 - `config.json`: Supabase public build configuration and target site URL.
 - `schema.sql`: applied database schema and RLS.

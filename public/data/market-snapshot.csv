@@ -1,0 +1,4 @@
+snapshot_date,governorate,median_asking_usd_per_sqm,q1_usd_per_sqm,q3_usd_per_sqm,priced_apartment_sample,active_all_types,for_sale_all_types,for_rent_all_types,source
+2026-10-11,Damascus,1666,1462,2080,20,278,194,84,https://shamaqar.net/market/indicators
+2026-10-11,Rural Damascus,300,189,438,17,260,178,82,https://shamaqar.net/market/indicators
+2026-10-11,Latakia,325,207,423,6,55,51,4,https://shamaqar.net/market/indicators
