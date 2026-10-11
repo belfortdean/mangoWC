@@ -1,0 +1,6 @@
+__pycache__/
+qa/
+node_modules/
+.env*
+.vercel/
+*.zip

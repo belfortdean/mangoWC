@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-11",
+  "source": "https://shamaqar.net/market/indicators",
+  "total": 608,
+  "sale": 438,
+  "rent": 170,
+  "apartmentMedian": 52500,
+  "apartmentSample": 48,
+  "ppmMedian": 533,
+  "ppmSample": 43,
+  "cities": [
+    {
+      "slug": "damascus",
+      "ar": "دمشق",
+      "en": "Damascus",
+      "median": 1666,
+      "q1": 1462,
+      "q3": 2080,
+      "n": 20,
+      "price": 260000,
+      "active": 278,
+      "sale": 194,
+      "rent": 84
+    },
+    {
+      "slug": "rural-damascus",
+      "ar": "ريف دمشق",
+      "en": "Rural Damascus",
+      "median": 300,
+      "q1": 189,
+      "q3": 438,
+      "n": 17,
+      "price": 28000,
+      "active": 260,
+      "sale": 178,
+      "rent": 82
+    },
+    {
+      "slug": "latakia",
+      "ar": "اللاذقية",
+      "en": "Latakia",
+      "median": 325,
+      "q1": 207,
+      "q3": 423,
+      "n": 6,
+      "price": 44000,
+      "active": 55,
+      "sale": 51,
+      "rent": 4
+    }
+  ],
+  "coverage": [
+    {
+      "ar": "حمص",
+      "en": "Homs",
+      "count": 3
+    },
+    {
+      "ar": "حلب",
+      "en": "Aleppo",
+      "count": 1
+    }
+  ],
+  "histogram": [
+    3,
+    8,
+    7,
+    8,
+    2,
+    1,
+    5,
+    14
+  ],
+  "bands": [
+    "< $15k",
+    "$15–25k",
+    "$25–40k",
+    "$40–60k",
+    "$60–90k",
+    "$90–130k",
+    "$130–200k",
+    "≥ $200k"
+  ]
+}

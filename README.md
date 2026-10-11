@@ -5,7 +5,7 @@ Arabic-first, bilingual static research website prepared for `https://mangowc.ve
 
 ## Preview and run
 
-Open `Sham-Aqar-Research-Preview.html` in a browser for the portable interactive preview. It includes every page, images, calculators and internal navigation. Google Fonts needs internet; system fonts remain available offline. The preview is not the production deployment.
+Run `python3 package_preview.py`, then open `Sham-Aqar-Research-Preview.html` in a browser for the portable interactive preview. It includes every page, images, calculators and internal navigation. Google Fonts needs internet; system fonts remain available offline. The preview is not the production deployment.
 
 To serve the actual production files:
 
@@ -72,6 +72,6 @@ Tests cover rental yield, vacancy/loss cases, price/m², buying cash outlay, inv
 - `schema.sql`: applied database schema and RLS.
 - `package_preview.py`: self-contained preview generator.
 - `test-math.cjs`, `test-site.cjs`: calculation and browser checks.
-- `Sham-Aqar-Research-Preview.html`: portable, interactive review copy.
+- `Sham-Aqar-Research-Preview.html`: generated, portable interactive review copy (also supplied separately as a download).
 
 Brand logo and villa artwork were taken from the user's existing Sham Aqar website for this Sham Aqar project. Source images are not included under a separate third-party license grant.

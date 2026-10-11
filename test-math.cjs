@@ -1,0 +1,12 @@
+const assert=require('node:assert/strict');
+const {yieldCalc,priceCalc,rentBuy}=require('./site/assets/math.js');
+const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-9,`${a} != ${b}`);
+let r=yieldCalc(100000,500,5000,1,1200);
+assert.equal(r.net,4300);near(r.grossYield,6);near(r.netYield,4300/105000*100);near(r.payback,105000/4300);
+assert.equal(yieldCalc(100000,500,0,12,1200).payback,null);
+assert.equal(yieldCalc(100000,0,0,0,0).netYield,0);
+near(priceCalc(100000,120),833.3333333333334);
+assert.deepEqual(rentBuy(100000,500,5000,1,5),{rentTotal:30000,buyOutlay:110000,annualMaintenance:1000,ratio:100000/6000});
+assert.equal(rentBuy(100000,0,0,0,5).ratio,null);
+for(const f of [()=>priceCalc(10,0),()=>priceCalc(NaN,10),()=>yieldCalc(0,500,0,0,0),()=>yieldCalc(10,2,0,13,0),()=>yieldCalc(10,-1,0,0,0),()=>rentBuy(10,1,0,0,0),()=>rentBuy(10,1,0,101,1)])assert.throws(f);
+console.log('Calculation tests passed: yield, vacancy, loss, price/m², cash comparison and invalid inputs.');
