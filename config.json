@@ -1,1 +1,6 @@
-{"supabaseUrl":"https://torufqlfnvpdczsjhecj.supabase.co","supabaseKey":"sb_publishable_z8npjGGZXHUkDBWvQ72Yyg_4zmgItMn","siteUrl":"https://mangowc.vercel.app"}
+{
+  "supabaseUrl": "https://torufqlfnvpdczsjhecj.supabase.co",
+  "supabaseKey": "sb_publishable_z8npjGGZXHUkDBWvQ72Yyg_4zmgItMn",
+  "siteUrl": "https://mangowc.vercel.app",
+  "googleSiteVerification": "sgsX4VwwcjfesAEFsF6bykGPkbwbNFzOTCjUuFsPlMI"
+}

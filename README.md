@@ -47,6 +47,9 @@ Once a production domain is assigned, verify the Arabic and English pages, navig
 
 ## SEO implementation
 
+The Search Console URL-prefix verification tag is configured in `config.json` and emitted into every generated HTML page by `build.py`. Keep the tag in the served HTML after verification; Search Console checks it again periodically.
+
+
 Each page has a unique title and description, self-canonical, reciprocal Arabic/English hreflang, social metadata and appropriate Organization/WebSite/WebPage schema. Reports include Article metadata and source attribution. Sitemap and robots.txt are included. Relevant report and tool links lead directly to Sham Aqar property searches, listing creation and the app. Publisher affiliation is explicit. The site earns usefulness through original reports and tools; inherited links and ranking improvements are not guaranteed.
 
 ## Verification
