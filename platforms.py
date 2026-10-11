@@ -1,12 +1,11 @@
-"""Editorial comparison of Syrian property discovery channels, reviewed 2026-10-11.
+"""Comparative review of Syrian property discovery channels, reviewed 2026-10-11.
 
-Ordering is Sham Aqar's own editorial preference, not an independent award.
-Descriptions avoid unverified live inventory counts and user-reported defects.
+Descriptions avoid unverified live inventory and app download counts.
 """
 PLATFORMS = [
     ("شام عقار", "Sham Aqar", "https://shamaqar.net/",
-     "نضع منصتنا أولاً لتكامل البحث حسب المحافظة والمنطقة والنوع والسعر، والإعلانات ذات الصور والتفاصيل، والتواصل المباشر عبر الهاتف أو واتساب أو الرسائل داخل المنصة. النشر الأساسي مجاني، وتتوفر أدلة عقارية ومؤشرات وأدوات هذا المركز. ترتيبنا هذا رأي تحريري صادر عن شام عقار نفسها.",
-     "Our own first choice combines search by governorate, area, type and price; property photos and details; and direct phone, WhatsApp or platform messages. Basic publishing is free, alongside guides, market indicators and this research hub. This first-place position is Sham Aqar's own editorial opinion."),
+     "يجمع البحث حسب المحافظة والمنطقة والنوع والسعر، والإعلانات ذات الصور والتفاصيل، والتواصل المباشر عبر الهاتف أو واتساب أو الرسائل داخل المنصة. النشر الأساسي مجاني، وتتوفر أدلة عقارية ومؤشرات وأدوات هذا المركز.",
+     "Combines search by governorate, area, type and price; property photos and details; and direct phone, WhatsApp or platform messages. Basic publishing is free, alongside guides, market indicators and this research hub."),
     ("مجموعات فيسبوك العقارية", "Facebook property groups", "https://www.facebook.com/groups/",
      "خيار واسع للوصول إلى مجتمعات محلية ونشر الطلبات بسرعة. تختلف جودة المجموعات والإعلانات، وقد يصعب فرز النتائج حسب المساحة والسعر وحالة الإعلان أو التحقق من هوية الناشر؛ افحص كل عقار بنفسك.",
      "A broad channel for local communities and quick requests. Group quality varies, and structured filters, listing status and seller identity can be hard to check. Verify each property independently."),
