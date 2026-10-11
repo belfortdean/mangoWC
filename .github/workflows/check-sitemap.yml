@@ -36,7 +36,7 @@ jobs:
           urls=root.findall('s:url',ns)
           print('Root:',root.tag,'URLs:',len(urls),'Bytes:',len(body))
           assert root.tag=='{http://www.sitemaps.org/schemas/sitemap/0.9}urlset'
-          assert len(urls)==28
+          assert len(urls)==102
           PY
       - name: Request robots and text sitemap
         shell: bash
@@ -47,4 +47,8 @@ jobs:
           printf '%s\n' "$robots" | grep -Fx 'Allow: /'
           printf '%s\n' "$robots" | grep -Fx 'Sitemap: https://mangowc.vercel.app/sitemap-urls.txt'
           ! printf '%s\n' "$robots" | grep -Eiq '^[[:space:]]*Disallow:'
-          test "$(curl --fail --silent --show-error --location --max-time 20 https://mangowc.vercel.app/sitemap-urls.txt | wc -l)" -eq 28
+          curl --fail --silent --show-error --location --max-time 20 https://mangowc.vercel.app/sitemap-urls.txt -o text-sitemap.txt
+          test "$(wc -l < text-sitemap.txt)" -eq 102
+          grep -Fx 'https://mangowc.vercel.app/guides/compare-apartments/' text-sitemap.txt
+          grep -Fx 'https://mangowc.vercel.app/en/guides/compare-apartments/' text-sitemap.txt
+          curl --fail --silent --show-error --location --max-time 20 https://mangowc.vercel.app/guides/compare-apartments/ | grep -F '<link rel="canonical" href="https://mangowc.vercel.app/guides/compare-apartments/"'
