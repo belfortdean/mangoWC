@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mangowc.vercel.app/sitemap-urls.txt
+Sitemap: https://mangowc.vercel.app/sitemap-pages.txt

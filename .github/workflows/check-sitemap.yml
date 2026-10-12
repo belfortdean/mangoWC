@@ -46,10 +46,11 @@ jobs:
           robots="$(curl --fail --silent --show-error --location --max-time 20 https://mangowc.vercel.app/robots.txt)"
           printf '%s\n' "$robots" | grep -Fx 'User-agent: *'
           printf '%s\n' "$robots" | grep -Fx 'Allow: /'
-          printf '%s\n' "$robots" | grep -Fx 'Sitemap: https://mangowc.vercel.app/sitemap-urls.txt'
+          printf '%s\n' "$robots" | grep -Fx 'Sitemap: https://mangowc.vercel.app/sitemap-pages.txt'
           ! printf '%s\n' "$robots" | grep -Eiq '^[[:space:]]*Disallow:'
-          curl --fail --silent --show-error --location --max-time 20 https://mangowc.vercel.app/sitemap-urls.txt -o text-sitemap.txt
+          curl --fail --silent --show-error --location --max-time 20 https://mangowc.vercel.app/sitemap-pages.txt -o text-sitemap.txt
           test "$(wc -l < text-sitemap.txt)" -eq 130
           grep -Fx 'https://mangowc.vercel.app/guides/compare-apartments/' text-sitemap.txt
           grep -Fx 'https://mangowc.vercel.app/en/guides/compare-apartments/' text-sitemap.txt
+          test "$(curl --fail --silent --show-error --location --max-time 20 https://mangowc.vercel.app/sitemap-urls.txt | wc -l)" -eq 130
           curl --fail --silent --show-error --location --max-time 20 https://mangowc.vercel.app/guides/compare-apartments/ | grep -F '<link rel="canonical" href="https://mangowc.vercel.app/guides/compare-apartments/"'
