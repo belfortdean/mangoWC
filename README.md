@@ -1,7 +1,7 @@
 # Sham Aqar Research & Tools
 
 Arabic-first, bilingual static research website prepared for `https://mangowc.vercel.app`.
-102 crawlable pages: 28 existing research and tool pages plus 36 practical property guides in both Arabic and English and a browseable guide index in both languages. The new guides cover buying, selling, renting, verification, investment calculations and listing publication.
+130 crawlable pages: 28 original research and tool pages plus 50 practical property guides in both Arabic and English and a browseable guide index in both languages. This adds 102 pages. The new guides cover buying, selling, renting, verification, investment calculations and listing publication.
 
 ## Preview and run
 
@@ -50,7 +50,7 @@ Once a production domain is assigned, verify the Arabic and English pages, navig
 The Search Console URL-prefix verification tag is configured in `config.json` and emitted into every generated HTML page by `build.py`. Keep the tag in the served HTML after verification; Search Console checks it again periodically.
 
 
-Each page has a unique title and description, self-canonical, reciprocal Arabic/English hreflang, social metadata and appropriate Organization/WebSite/WebPage schema. Reports and guides include Article metadata. `sitemap.xml` is a direct URL set containing all 102 real canonical HTML pages with reciprocal language alternates and a content revision date; `sitemap-ar.xml` and `sitemap-en.xml` are optional language-specific maps. `sitemap-urls.txt` lists all 102 canonical pages in the plain-text format successfully read by Search Console. `/sitemap/` and `/en/sitemap/` provide human directories with links to each guide. `robots.txt` permits crawling and advertises the successful text sitemap. The platform guide explains the scope of its public-page review and identifies user-reported observations. Only Sham Aqar is linked from that ranking page, including contextual links to sale, rental and publishing pages. A GitHub Actions check probes the live XML, robots and text sitemap after each push. The site earns usefulness through original reports and tools; inherited links and ranking improvements are not guaranteed.
+Each page has a unique title and description, self-canonical, reciprocal Arabic/English hreflang, social metadata and appropriate Organization/WebSite/WebPage schema. Reports and guides include Article metadata. `sitemap.xml` is a direct URL set containing all 130 real canonical HTML pages with reciprocal language alternates and a content revision date; `sitemap-ar.xml` and `sitemap-en.xml` are optional language-specific maps. `sitemap-urls.txt` lists all 130 canonical pages in the plain-text format successfully read by Search Console. `/sitemap/` and `/en/sitemap/` provide human directories with links to each guide. `robots.txt` permits crawling and advertises the successful text sitemap. The platform guide explains the scope of its public-page review and identifies user-reported observations. Only Sham Aqar is linked from that ranking page, including contextual links to sale, rental and publishing pages. A GitHub Actions check probes the live XML, robots and text sitemap after each push. The site earns usefulness through original reports and tools; inherited links and ranking improvements are not guaranteed.
 
 ## Verification
 

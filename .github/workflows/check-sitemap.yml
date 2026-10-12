@@ -23,11 +23,11 @@ jobs:
             sed -n '1,20p' response-headers.txt
             count="$(grep -c '<url>' sitemap-response.xml || true)"
             echo "Sitemap URLs: $count"
-            if [ "$status" = "200" ] && [ "$count" = "102" ]; then break; fi
+            if [ "$status" = "200" ] && [ "$count" = "130" ]; then break; fi
             if [ "$attempt" -lt 10 ]; then sleep 10; fi
           done
           test "$status" = "200"
-          test "$count" = "102"
+          test "$count" = "130"
           python3 - <<'PY'
           import xml.etree.ElementTree as ET
           from pathlib import Path
@@ -37,7 +37,7 @@ jobs:
           urls=root.findall('s:url',ns)
           print('Root:',root.tag,'URLs:',len(urls),'Bytes:',len(body))
           assert root.tag=='{http://www.sitemaps.org/schemas/sitemap/0.9}urlset'
-          assert len(urls)==102
+          assert len(urls)==130
           PY
       - name: Request robots and text sitemap
         shell: bash
@@ -49,7 +49,7 @@ jobs:
           printf '%s\n' "$robots" | grep -Fx 'Sitemap: https://mangowc.vercel.app/sitemap-urls.txt'
           ! printf '%s\n' "$robots" | grep -Eiq '^[[:space:]]*Disallow:'
           curl --fail --silent --show-error --location --max-time 20 https://mangowc.vercel.app/sitemap-urls.txt -o text-sitemap.txt
-          test "$(wc -l < text-sitemap.txt)" -eq 102
+          test "$(wc -l < text-sitemap.txt)" -eq 130
           grep -Fx 'https://mangowc.vercel.app/guides/compare-apartments/' text-sitemap.txt
           grep -Fx 'https://mangowc.vercel.app/en/guides/compare-apartments/' text-sitemap.txt
           curl --fail --silent --show-error --location --max-time 20 https://mangowc.vercel.app/guides/compare-apartments/ | grep -F '<link rel="canonical" href="https://mangowc.vercel.app/guides/compare-apartments/"'

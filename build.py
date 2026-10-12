@@ -125,14 +125,14 @@ for lang in ['ar','en']:
     itemlist={'@type':'ItemList','name':T('دراسة مقارنة لمنصات العقار في سوريا','Comparative review of Syrian property platforms'),'numberOfItems':20,'itemListOrder':'https://schema.org/ItemListOrderAscending','itemListElement':[{'@type':'ListItem','position':n,'name':item[0] if ar else item[1],**({'url':item[2]} if n==1 else {})} for n,item in enumerate(PLATFORMS,1)]}
     page('best-real-estate-platforms-syria',T('أفضل 20 منصة عقارية في سوريا: دراسة مقارنة 2026','20 Syrian real estate platforms: 2026 comparison'),T('دراسة مقارنة مؤرخة لـ20 منصة وقناة عقارية في سوريا، تشمل خصائص شام عقار وملاحظات تصفح واستخدام.','A dated comparison of 20 Syrian property platforms and channels, with Sham Aqar features and browsing observations.'),ranking,'best-real-estate-platforms-syria',schema=itemlist)
 
-    guide_index=intro(T('36 دليلاً عملياً','36 PRACTICAL GUIDES'),T('دليل البحث عن عقار في سوريا','A practical guide to property in Syria'),T('أسئلة محددة وخطوات عملية لكل مرحلة: البحث، المعاينة، التحقق، الحساب، ثم نشر الإعلان. اختر الموضوع الذي يطابق قرارك الحالي.','Focused questions and practical steps for searching, viewing, checking, calculating and publishing. Choose the topic that matches your current decision.'))
+    guide_index=intro(T('50 دليلاً عملياً','50 PRACTICAL GUIDES'),T('دليل البحث عن عقار في سوريا','A practical guide to property in Syria'),T('أسئلة محددة وخطوات عملية لكل مرحلة: البحث، المعاينة، التحقق، الحساب، ثم نشر الإعلان. اختر الموضوع الذي يطابق قرارك الحالي.','Focused questions and practical steps for searching, viewing, checking, calculating and publishing. Choose the topic that matches your current decision.'))
     for category,labels in CATEGORIES.items():
         guide_index+=f'<section class="section" id="{category}"><div class="section-head"><div><h2>{T(*labels)}</h2></div></div><div class="cards">'
         for guide in (g for g in GUIDES if g[1]==category):
             guide_index+=f'<article class="card"><div class="card-top"><span>{T(*labels)}</span></div><h3><a href="{url("guides/"+guide[0])}">{esc(T(guide[2],guide[3]))}</a></h3><p>{esc(T(guide[4],guide[5]))}</p><div class="card-bottom"><a href="{url("guides/"+guide[0])}">{T("اقرأ الخطوات ←","Read the steps →")}</a></div></article>'
         guide_index+='</div></section>'
     guide_index+=f'<section class="section">{cta()}</section>'
-    page('guides',T('دليل العقارات في سوريا: 36 موضوعاً عملياً','Syrian property guide: 36 practical topics'),T('أدلة شام عقار العملية للشراء والبيع والإيجار والتحقق وحساب عوائد العقار ونشر الإعلانات.','Sham Aqar practical guides to buying, selling, renting, verification, property calculations and listing.'),guide_index,'guides')
+    page('guides',T('دليل العقارات في سوريا: 50 موضوعاً عملياً','Syrian property guide: 50 practical topics'),T('أدلة شام عقار العملية للشراء والبيع والإيجار والتحقق وحساب عوائد العقار ونشر الإعلانات.','Sham Aqar practical guides to buying, selling, renting, verification, property calculations and listing.'),guide_index,'guides')
     for guide in GUIDES:
         slug,category,ar_title,en_title,ar_intro,en_intro,ar_steps,en_steps,ar_caution,en_caution=guide
         title=T(ar_title,en_title); intro_text=T(ar_intro,en_intro); caution=T(ar_caution,en_caution)
